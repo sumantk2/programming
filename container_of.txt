@@ -1,3 +1,6 @@
+/* This code was written for better understanding. I do it as per my understanding. 
+ * Might be correct / wrong */
+
 #define container_of(ptr, type, member) ({                      \
         const typeof( ((type *)0)->member ) *__mptr = (ptr);    \
         (type *)( (char *)__mptr - offsetof(type,member) );})
