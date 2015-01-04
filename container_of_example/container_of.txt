@@ -21,3 +21,4 @@ So how does this calculation work ?
 We will print in-depth details of each calculation so that you can understand it properly
 Then lets see how container_of will print the address of the associated structure.
 
+---------
