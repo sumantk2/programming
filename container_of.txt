@@ -1,0 +1,20 @@
+#define container_of(ptr, type, member) ({                      \
+        const typeof( ((type *)0)->member ) *__mptr = (ptr);    \
+        (type *)( (char *)__mptr - offsetof(type,member) );})
+
+defined in kernel.h
+
+showing an example in a userspace program.
+
+Here we use container_of as a macro. So we can deference NULL. 
+
+Suppose we have the address of gearbox [ Defined in structure car_spare_cost ]
+. We need to find out the address of the associated structure car_spare_cost. Then we can use
+the above container_of() macro.
+
+So how does this calculation work ?
+
+- In this program, I will print the address of gearbox and its associated structure.
+We will print in-depth details of each calculation so that you can understand it properly
+Then lets see how container_of will print the address of the associated structure.
+
