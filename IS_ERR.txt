@@ -1,0 +1,53 @@
+
+/* ERR_PTR - convert long to void pointer 
+ * PTR_ERR - convert (void *) to long
+ */
+
+example of IS_ERR, ERR_PTR, PTR_ERR
+
+static inline void * __must_check ERR_PTR(long error)
+{
+        return (void *) error;
+}
+static inline long __must_check PTR_ERR(__force const void *ptr)
+{
+        return (long) ptr;
+}
+static inline bool __must_check IS_ERR(__force const void *ptr)
+{
+        return IS_ERR_VALUE((unsigned long)ptr);
+}
+#define IS_ERR_VALUE(x) unlikely((x) >= (unsigned long)-MAX_ERRNO)
+
+definition of these found in linux/err.h. This doesnt do anything useful.
+Can view many examples in kernel source.
+
+
+
+struct dummy {
+	int a;
+	int b;
+};
+
+struct dummy *func_malloc()
+{
+	struct dummy *dummy;
+	dummy = kmalloc(sizeof(struct dummy), GFP_KERNEL);
+	if(!dummy)
+		return ERR_PTR(-ENOMEM);
+
+	return dummy;
+
+}
+static int __init sample_init()
+{
+	int a;
+	struct dummy *dummy;
+	dummy = func_malloc();
+	if(IS_ERR(dummy))
+		return PTR_ERR(dummy);
+		
+	kfree(dummy);
+	return 0;
+}
+
