@@ -22,6 +22,9 @@ static inline bool __must_check IS_ERR(__force const void *ptr)
 definition of these found in linux/err.h. This doesnt do anything useful.
 Can view many examples in kernel source.
 
+Eg: have a look at 35b489d32fcc37e8735f41aa794b24cf9d1e74f5 in kernel source
+Before this, it wouldnt have gone to the cleanup case 
+
 
 
 struct dummy {
